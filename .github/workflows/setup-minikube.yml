@@ -1,17 +1,20 @@
-name: Setup Minikube Cluster
-on:
-  push:
-    branches:
-     - main
-jobs:
-  setup-minikube:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Minikube
-        uses: appleboy/setup-minikube@v1
-        with:
-          kubernetes_version: v1.21.2
-      - name: Start Minikube
-        run: minikube start
+name: Minikube Cluster Setup
+
+  on:
+    pull_request:
+      branches: [master]
+
+  jobs:
+    setup-minikube:
+      runs-on: windows-latest
+      steps:
+        - name: Set up Minikube
+          run: |
+            minikube start --driver=hyperv
+            minikube addons enable ingress
+        - name: Verify Minikube cluster
+          run: |
+            kubectl get nodes
+            kubectl get pods --all-namespaces
+        - name: Stop Minikube
+          run: minikube stop
