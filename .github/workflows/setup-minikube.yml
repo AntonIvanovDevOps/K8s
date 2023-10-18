@@ -1,7 +1,8 @@
 name: Setup Minikube Cluster
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches:
+     - main
 jobs:
   setup-minikube:
     runs-on: ubuntu-latest
