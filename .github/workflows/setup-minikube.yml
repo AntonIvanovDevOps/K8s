@@ -6,7 +6,7 @@ on:
 
 jobs:
   setup-minikube:
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
      - name: Set up Minikube
        run: |
