@@ -21,4 +21,4 @@ jobs:
             sudo kubectl get nodes
             sudo kubectl get pods --all-namespaces
       - name: Stop Minikube
-        run: sudo minikube stop
+        run: sudo minikube stop --driver=docker
