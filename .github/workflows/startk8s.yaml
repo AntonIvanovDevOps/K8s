@@ -20,3 +20,5 @@ jobs:
       - name: Verify KinD installation
         run: |
           kubectl cluster-info
+          kubectl get nodes
+          kubectl get pods --all-namespaces
