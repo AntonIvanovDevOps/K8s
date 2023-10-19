@@ -1,21 +1,21 @@
 name: Minikube Cluster Setup
 
-  on:
-    push:
-      branches:
-        - main
+on:
+  push:
+    branches:
+       - main
 
-  jobs:
-    setup-minikube:
-      runs-on: windows-latest
-      steps:
-        - name: Set up Minikube
-          run: |
-            minikube start --driver=hyperv
-            minikube addons enable ingress
-        - name: Verify Minikube cluster
-          run: |
+jobs:
+  setup-minikube:
+    runs-on: windows-latest
+    steps:
+      - name: Set up Minikube
+        run: |
+          minikube start --driver=hyperv
+          minikube addons enable ingress
+      - name: Verify Minikube cluster
+        run: |
             kubectl get nodes
             kubectl get pods --all-namespaces
-        - name: Stop Minikube
-          run: minikube stop
+      - name: Stop Minikube
+        run: minikube stop
